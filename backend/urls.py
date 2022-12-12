@@ -15,10 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import re_path
 
 from .views import index
+from .endpoints import *
 
 urlpatterns = [
     path('', index, name='index'),
     path('admin/', admin.site.urls),
+]
+
+urlpatterns += [
+    # re_path('get_list/', views.GetItemsListView.as_view()),
+    re_path(r'^get_filtered_list/(?P<filter>\w+)$', GetFilteredList.as_view()),
+    path('get_categories/', GetCategories.as_view()),
+    re_path(r'^get_item/(?P<id>\d+)$', GetItem.as_view()),
+    re_path(r'^get_list/(?P<filter>\w+)/(?P<page>\d+)$', PageItem.as_view()),
+    re_path(r'^get_pages/(?P<filter>\w+)$', GetPages.as_view())
 ]
