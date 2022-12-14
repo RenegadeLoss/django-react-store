@@ -65,6 +65,5 @@ class GetCategories(generics.ListAPIView):
     def get_queryset(self):
         queryset = list()
         for category in TypeOfClothes.objects.all():
-            if category.clothings_set.exists():
-                queryset.append(category)
+            queryset.append(category)
         return queryset
