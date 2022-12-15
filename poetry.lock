@@ -38,6 +38,18 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-autoslug"
+version = "1.9.8"
+description = "An automated slug field for Django."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+cyrillic = ["pytils (>=0.2)"]
+translitcodec = ["translitcodec (>=0.3)"]
+
+[[package]]
 name = "django-heroku"
 version = "0.3.1"
 description = "This is a Django library for Heroku apps."
@@ -178,7 +190,7 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "2b7e98ee3253e0ad4d9592ea19237211f892e0c9dfefc7178c92b37f9a04ac74"
+content-hash = "328749c710f3ad298179958d69dd05f8abc1c1d94448c106dbe103dc28503bca"
 
 [metadata.files]
 asgiref = [
@@ -192,6 +204,10 @@ dj-database-url = [
 Django = [
     {file = "Django-4.1.4-py3-none-any.whl", hash = "sha256:0b223bfa55511f950ff741983d408d78d772351284c75e9f77d2b830b6b4d148"},
     {file = "Django-4.1.4.tar.gz", hash = "sha256:d38a4e108d2386cb9637da66a82dc8d0733caede4c83c4afdbda78af4214211b"},
+]
+django-autoslug = [
+    {file = "django-autoslug-1.9.8.tar.gz", hash = "sha256:bae66c27d35615f472865b99c4d107f3b3add3d22ee337e84960fc07694abd45"},
+    {file = "django_autoslug-1.9.8-py2.py3-none-any.whl", hash = "sha256:26459eeddec207e307c55777a10fc25d17f4978753695340b16a17ed248a6f70"},
 ]
 django-heroku = [
     {file = "django-heroku-0.3.1.tar.gz", hash = "sha256:6af4bc3ae4a9b55eaad6dbe5164918982d2762661aebc9f83d9fa49f6009514e"},

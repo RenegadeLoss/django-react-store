@@ -1,15 +1,16 @@
 from django.db import models
 from django.urls import reverse
 from uuid import uuid4
-from django.template.defaultfilters import slugify
+from django.utils.text import slugify
+
 
 # Create your models here.
 
 
 class TypeOfClothes(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid4)
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     type_name = models.CharField(max_length=100, help_text='Тип одежды(Футболки, Шорты, Худи и т.д.)', unique=True)
-    slug = models.SlugField(max_length=250)
+    slug = models.SlugField(max_length=250, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.type_name)

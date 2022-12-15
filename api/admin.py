@@ -10,7 +10,7 @@ from .models import Clothings, TypeOfClothes, Image
 
 @admin.register(TypeOfClothes)
 class TypeOfClothesAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'type_name', 'slug',)
 
 
 @admin.register(Clothings)
