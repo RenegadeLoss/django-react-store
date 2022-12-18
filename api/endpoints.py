@@ -42,9 +42,13 @@ class GetPages(generics.ListAPIView):
     serializer_class = ClothingsSerializer
 
     def get_queryset(self):
-        category = self.kwargs['filter'].title()
-        if category != '' or category != 'undefined':
-            return list(Clothings.objects.filter(type__exact=category))
+        filter = self.kwargs['filter']
+        print('----------',filter,'-------', sep='\n')
+        if filter != 'all':
+            id_c = TypeOfClothes.objects.get(slug__exact=filter).id
+            lst = list(Clothings.objects.filter(type_id=id_c))
+            print(lst)
+            return lst
         return list(Clothings.objects.all())
 
 
@@ -53,11 +57,11 @@ class PageItem(generics.ListAPIView):
 
     def get_queryset(self):
         n_page = int(self.kwargs['page'])
-        category = self.kwargs['filter']
-        # category = TypeOfClothes.objects.get(id=category)
-        # print(category)
-        if category != '' or category != 'undefined':
-            lst = list(Clothings.objects.filter(type_id=category))[n_page * 2 - 2:n_page * 2]
+        filter = self.kwargs['filter']
+        print('----------',filter,'-------', sep='\n')
+        if filter != 'all':
+            id_c = TypeOfClothes.objects.get(slug__exact=filter).id
+            lst = list(Clothings.objects.filter(type_id=id_c))[n_page * 2 - 2:n_page * 2]
             print(lst)
             return lst
         return list(Clothings.objects.all())[n_page*2-2:n_page*2]

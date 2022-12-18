@@ -55,7 +55,7 @@ class App extends React.Component {
       currentItems: this.state.items,
       order: [],
       categorys: [],
-      filter: '',
+      filter: 'all',
       pages: {},
     }
     this.handleClick = this.handleClick.bind(this)
@@ -66,6 +66,7 @@ class App extends React.Component {
   
 
   componentDidMount(){
+    if (this.state.filter) {
     fetch(`http://127.0.0.1:8000/api/get_list/${this.state.filter}/1`)
       .then(res => res.json())
       .then(
@@ -78,6 +79,7 @@ class App extends React.Component {
         (error) => {
         }
       )
+    }
 
     fetch("http://127.0.0.1:8000/api/get_categories/")
     .then(res => res.json())
@@ -134,19 +136,19 @@ class App extends React.Component {
   }
 
   setFilter(category){
-    fetch(`http://127.0.0.1:8000/api/get_pages/${category.id}`)
+    fetch(`http://127.0.0.1:8000/api/get_pages/${category}`)
         .then(res => res.json())
         .then(
           (result) => {
             this.setState({
-              filter: category.id,
+              filter: category.slug,
               pages: result[-1]
             });
           },
           (error) => {
           }
         )
-    fetch(`http://127.0.0.1:8000/api/get_list/${category.id}/1`)
+    fetch(`http://127.0.0.1:8000/api/get_list/${category.slug}/1`)
         .then(res => res.json())
         .then(
           (result) => {

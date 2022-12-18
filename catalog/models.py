@@ -4,6 +4,7 @@ from uuid import uuid4
 #from django.utils.text import slugify
 from autoslug import AutoSlugField
 from transliterate import slugify
+from django.template.defaultfilters import slugify as d_slugify
 
 # Create your models here.
 
@@ -11,7 +12,7 @@ from transliterate import slugify
 class TypeOfClothes(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     type_name = models.CharField(max_length=100, help_text='Тип одежды(Футболки, Шорты, Худи и т.д.)', unique=True)
-    slug = AutoSlugField(populate_from='type_name', slugify=slugify) # костыль, потому что AutoSlugField не работает с кириллицей
+    slug = AutoSlugField(populate_from='type_name', slugify=slugify, editable=False) # костыль, потому что AutoSlugField не работает с кириллицей
 
     class Meta:
         verbose_name = 'Категория'
