@@ -53,8 +53,8 @@ class PageItem(generics.ListAPIView):
 
     def get_queryset(self):
         n_page = int(self.kwargs['page'])
-        category = self.kwargs['filter'].title()
-        if category != 'All':
+        category = self.kwargs['filter']
+        if category != 'all':
             return list(Clothings.objects.filter(type__exact=category))[n_page * 2 - 2:n_page * 2]
         return list(Clothings.objects.all())[n_page*2-2:n_page*2]
 
