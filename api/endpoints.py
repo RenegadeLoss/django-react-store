@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Clothings, TypeOfClothes
+from ..backend.models import Clothings, TypeOfClothes
 from .api_serealizers import ClothingsSerializer, TypeOfClothesSerializer
 from rest_framework import generics
 
