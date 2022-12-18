@@ -37,11 +37,11 @@ class Clothings(models.Model):
     image_2 = models.ImageField(upload_to='images/', verbose_name='Изображение 2', blank=True, null=True)
     image_3 = models.ImageField(upload_to='images/', verbose_name='Изображение 3', blank=True, null=True)
 
-    size_xs = models.IntegerField(verbose_name='XS', null=True, help_text='Количество данного размера')
-    size_s = models.IntegerField(verbose_name='S', null=True, help_text='Количество данного размера')
-    size_m = models.IntegerField(verbose_name='M', null=True, help_text='Количество данного размера')
-    size_l = models.IntegerField(verbose_name='L', null=True, help_text='Количество данного размера')
-    size_xl = models.IntegerField(verbose_name='XL', null=True, help_text='Количество данного размера')
+    size_xs = models.PositiveIntegerField(verbose_name='XS', null=True, help_text='Количество данного размера', blank=True)
+    size_s = models.PositiveIntegerField(verbose_name='S', null=True, help_text='Количество данного размера', blank=True)
+    size_m = models.PositiveIntegerField(verbose_name='M', null=True, help_text='Количество данного размера', blank=True)
+    size_l = models.PositiveIntegerField(verbose_name='L', null=True, help_text='Количество данного размера', blank=True)
+    size_xl = models.PositiveIntegerField(verbose_name='XL', null=True, help_text='Количество данного размера', blank=True)
 
     class Meta:
         ordering = ['id']
@@ -73,5 +73,4 @@ class Clothings(models.Model):
 
 class Image(models.Model):
     image = models.ImageField(upload_to='images/', verbose_name='Image', blank=True, null=True)
-
-
+    

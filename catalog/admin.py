@@ -3,11 +3,6 @@ from .models import Clothings, TypeOfClothes, Image
 # Register your models here.
 
 
-# class TypeOfClothesInline(admin.TabularInline):
-#     model = TypeOfClothes
-#     extra = 0
-
-
 @admin.register(TypeOfClothes)
 class TypeOfClothesAdmin(admin.ModelAdmin):
     list_display = ('id', 'type_name', 'slug',)

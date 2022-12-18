@@ -1,6 +1,6 @@
 from django.db import models
-from backend.models import Clothings, TypeOfClothes
 from rest_framework import serializers
+from catalog.models import Clothings, TypeOfClothes
 # Create your models here.
 
 

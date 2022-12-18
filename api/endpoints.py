@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from ..backend.models import Clothings, TypeOfClothes
+from catalog.models import Clothings, TypeOfClothes
 from .api_serealizers import ClothingsSerializer, TypeOfClothesSerializer
 from rest_framework import generics
 
@@ -43,7 +43,7 @@ class GetPages(generics.ListAPIView):
 
     def get_queryset(self):
         category = self.kwargs['filter'].title()
-        if category != 'All':
+        if category != '' or category != 'undefined':
             return list(Clothings.objects.filter(type__exact=category))
         return list(Clothings.objects.all())
 
@@ -54,8 +54,12 @@ class PageItem(generics.ListAPIView):
     def get_queryset(self):
         n_page = int(self.kwargs['page'])
         category = self.kwargs['filter']
-        if category != 'all':
-            return list(Clothings.objects.filter(type__exact=category))[n_page * 2 - 2:n_page * 2]
+        # category = TypeOfClothes.objects.get(id=category)
+        # print(category)
+        if category != '' or category != 'undefined':
+            lst = list(Clothings.objects.filter(type_id=category))[n_page * 2 - 2:n_page * 2]
+            print(lst)
+            return lst
         return list(Clothings.objects.all())[n_page*2-2:n_page*2]
 
 
