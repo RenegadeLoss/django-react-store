@@ -12,9 +12,8 @@ class Category extends Component {
     return (
       <div className='category_list'>
         <ol>
-          <li className='category' onClick={() => this.allGoods('all')}> All </li>
-          {this.props.categorys.map((el) => (
-            <li key={el.type_name} className='category' onClick={() => this.allGoods(el.type_name)}>
+          {this.props.categories.map((el) => (
+            <li key={el.type_name} className='category' >
               {el.type_name}
             </li>
           ))}

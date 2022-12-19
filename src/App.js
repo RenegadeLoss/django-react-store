@@ -54,7 +54,7 @@ class App extends React.Component {
     this.state ={
       currentItems: this.state.items,
       order: [],
-      categorys: [],
+      categories: [],
       filter: 'all',
       pages: {},
     }
@@ -86,7 +86,7 @@ class App extends React.Component {
     .then(
       (result) => {
         this.setState({
-          categorys: result
+          categories: result
         });
       },
       // Note: it's important to handle errors here
@@ -136,12 +136,13 @@ class App extends React.Component {
   }
 
   setFilter(category){
-    fetch(`http://127.0.0.1:8000/api/get_pages/${category}`)
+    if (category != 'undefined'){
+    fetch(`http://127.0.0.1:8000/api/get_pages/${category.slug}`)
         .then(res => res.json())
         .then(
           (result) => {
             this.setState({
-              filter: category.slug,
+              filter: category,
               pages: result[-1]
             });
           },
@@ -159,15 +160,15 @@ class App extends React.Component {
           (error) => {
           }
         )
-  }
+  }}
   
   render() {
     return (
       <BrowserRouter>
-        <Header order={this.state.order} removeFromCart={this.removeFromCart} categorys={this.state.categorys} setFilter={this.setFilter} filter={this.state.filter}/>
+        <Header order={this.state.order} removeFromCart={this.removeFromCart} categories={this.state.categories} setFilter={this.setFilter} filter={this.state.filter}/>
          <Routes>
-          <Route path="/" element={<Index categories={this.state.categorys} setFilter={this.setFilter} filter={this.state.filter} />}/>
-          <Route path="catalog/:filter/:page" element={<Main items={this.state.currentItems} handleClick={this.handleClick}/>} filter={this.state.filter} pages={this.state.pages}/>
+          <Route path="/" element={<Index categories={this.state.categories} setFilter={this.setFilter} filter={this.state.filter} />}/>
+          <Route path="catalog/:filter/:page" element={<Main  handleClick={this.handleClick}/>}  />
           <Route path="catalog/about/:id" element={<About handleClick={this.handleClick}/>}/>
           <Route path="order/" element={<CartMobile order={this.state.order} removeFromOrder={this.removeFromCart} addToOrder={this.handleClick}/>} />
           <Route path="*" element={<Navigate to='catalog/' replace/>} />

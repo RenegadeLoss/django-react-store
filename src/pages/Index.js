@@ -12,12 +12,9 @@ export class Index extends Component {
                 <h2> Franco create </h2>
             </div>
             <div className='categories'>
-              <Link to={`catalog/${this.props.filter}/1`} className='noneStyle' >
-                <div className='hover-span' onClick={() => this.props.setFilter('all') }> Все категории </div>
-              </Link>
               {this.props.categories.map(el => (
-                <Link to={`catalog/${this.props.filter}/1`} key={el.type_name} className='noneStyle' >
-                  <div className='hover-span' onClick={() => this.props.setFilter(el.type_name) }> {el.type_name} </div>
+                <Link to={`catalog/${el.slug}/1`} key={el.id} className='noneStyle' >
+                  <div className='hover-span' onClick={() => this.props.setFilter(el) }> {el.type_name} </div>
                 </Link>
               ))}
 

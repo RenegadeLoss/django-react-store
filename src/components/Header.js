@@ -16,6 +16,11 @@ export class Header extends Component {
     this.OpenCategory = this.OpenCategory.bind(this)
   }
 
+  allGoods(type){
+    this.OpenCategory()
+    this.props.setFilter(type)
+  }
+
   handleClick(){
     this.setState({
       CartisActive: !this.state.CartisActive,
@@ -37,7 +42,7 @@ export class Header extends Component {
           <h1>Franco-create-team</h1>
         </Link>
         <nav className='nav_head'>
-          <span className='categorys' onClick={() => this.OpenCategory()}>Категории</span>
+          <span className='categories' onClick={() => this.OpenCategory()}>Категории</span>
           <MediaQuery maxDeviceWidth={480}>
             {(matches) => {
               if(matches){
@@ -70,9 +75,21 @@ export class Header extends Component {
           </div>
         )}
         {this.state.CategoryOpen && (
-          <Link to={`/catalog/${this.props.filter}/1`} className='noneStyle'>
-            <Category categorys={this.props.categorys} setFilter={this.props.setFilter} OpenCategory={this.OpenCategory} filter={this.props.filter}/>
-          </Link>
+          <div className='category_list'>
+          <ol>
+            {this.props.categories.map((el) => (
+              <li key={el.id} className='category' onClick={() => this.allGoods(el)}>
+                <Link to={`/catalog/${el.slug}/1`} className='noneStyle'>
+                  {el.type_name}
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </div>
+          
+          // <Link to={`/catalog/${this.props.filter.slug}/1`} className='noneStyle' onClick={() => this.allGoods()}>
+          //   <Category categories={this.props.categories} setFilter={this.props.setFilter} OpenCategory={this.OpenCategory} filter={this.props.filter}/>
+          // </Link>
         )}
       </header>
     )

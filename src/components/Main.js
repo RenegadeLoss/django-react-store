@@ -1,23 +1,21 @@
-import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from "react-router-dom";
 
-export class Main extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      curr_items: [],
-    }
-  }
+function Main(props) {
+  const [items, setItems] = useState({
+    item: []
+  })
+  const {filter, page} = useParams()
 
-  componentDidMount(){
+  useEffect(() => {
     window.scrollTo(0, 0);
-    fetch(`http://127.0.0.1:8000/api/get_list/${this.props.filter}/1`)
+    console.log('effect in main:',filter)
+    fetch(`http://127.0.0.1:8000/api/get_list/${filter}/${page}`)
         .then(res => res.json())
         .then(
           (result) => {
-            this.setState({
-              items: result,
-              currentItems: result
+            setItems({
+              item: result
             });
           },
           // Note: it's important to handle errors here
@@ -26,30 +24,29 @@ export class Main extends Component {
           (error) => {
           }
         )
-  }
+  }, [filter,page])
 
-  render() {
     return (
         <div>
-          {console.log(this.props.pages)}
           <section className='main_section'>
-            {this.props.items.map(item => (
-              <div className="item_card" key={item.id}>
-                <img src={item.image_1} alt='empty'></img>
+            {items.item.map(el => (
+              <div className="item_card" key={el.id}>
+                <img src={el.image_1} alt='empty'></img>
                 <div className='about_item'>
-                  <h3 className='item_name'>{item.title}</h3> 
-                  <p className='item_description'>{item.description}</p>
-                  <p className='item_price'> {item.price}</p>
-                  <Link to={`about/${item.id}`}> about </Link>
-                  <button className="addtoCard" onClick={() => this.props.handleClick(item)}>Add</button>
+                  <h3 className='item_name'>{el.title}</h3> 
+                  <p className='item_description'>{el.description}</p>
+                  <p className='item_price'> {el.price}</p>
+                  {console.log(el.id)}
+                  <Link to={`/catalog/about/${el.id}`}> about </Link>
+                  <button className="addtoCard" onClick={() => props.handleClick(el)}>Add</button>
                 </div>
               </div>
             ))}
-            <div> Pages:  { this.props.pages } </div>
+            <div> Pages:  { '' } </div>
           </section>
         </div>
     )
   }
-}
+
 
 export default Main
