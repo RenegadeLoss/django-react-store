@@ -32,17 +32,17 @@ class Clothings(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4)
     type = models.ForeignKey('TypeOfClothes', verbose_name='Тип одежды', on_delete=models.SET_NULL, null=True)
     title = models.CharField(verbose_name='Название', max_length=200, help_text='Название товара')
-    price = models.IntegerField(verbose_name='Цена')
+    price = models.IntegerField(verbose_name='Цена', default=1000)
     description = models.TextField(max_length=2000, verbose_name='Описание', blank=True, help_text='Описание товара')
     image_1 = models.ImageField(upload_to='images/', verbose_name='Изображение 1', blank=True, null=True)
     image_2 = models.ImageField(upload_to='images/', verbose_name='Изображение 2', blank=True, null=True)
     image_3 = models.ImageField(upload_to='images/', verbose_name='Изображение 3', blank=True, null=True)
 
-    size_xs = models.PositiveIntegerField(verbose_name='XS', null=True, help_text='Количество данного размера', blank=True)
-    size_s = models.PositiveIntegerField(verbose_name='S', null=True, help_text='Количество данного размера', blank=True)
-    size_m = models.PositiveIntegerField(verbose_name='M', null=True, help_text='Количество данного размера', blank=True)
-    size_l = models.PositiveIntegerField(verbose_name='L', null=True, help_text='Количество данного размера', blank=True)
-    size_xl = models.PositiveIntegerField(verbose_name='XL', null=True, help_text='Количество данного размера', blank=True)
+    size_xs = models.PositiveIntegerField(verbose_name='XS', default=0, null=True, help_text='Количество данного размера', blank=True)
+    size_s = models.PositiveIntegerField(verbose_name='S', default=0, null=True, help_text='Количество данного размера', blank=True)
+    size_m = models.PositiveIntegerField(verbose_name='M', default=0, null=True, help_text='Количество данного размера', blank=True)
+    size_l = models.PositiveIntegerField(verbose_name='L', default=0, null=True, help_text='Количество данного размера', blank=True)
+    size_xl = models.PositiveIntegerField(verbose_name='XL', default=0, null=True, help_text='Количество данного размера', blank=True)
 
     class Meta:
         ordering = ['id']

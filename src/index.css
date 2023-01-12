@@ -24,213 +24,38 @@ html, body {
    background: #f7f7f7;
 }
 
-.header_js {
+.header_js{
    position: relative;
    min-width: 100%;
    height: 45px;
    top: 0;
    left: 0;
-   padding-bottom: 10px;
+   margin-bottom: 2rem;
    background-color: white;
+   
 }
 
-.header_js h1 {
-   position: relative;
-   padding-top: 11px;
-   margin-left: 10px;
-   font-size: 20px;
-}
-
-nav.nav_head{
-   position: absolute;
-   display: inline-block;
-   right: 30px;
-   top: 12px;
-}
-
-nav.nav_head > span {
-   margin-right: 10px;
-   font-size: 20px;
-   font-style: inherit;
-   border-radius: 6px;
-   background-color: rgb(238, 243, 247);
-}
-
-nav.nav_head > span:hover {
-   display: inline-block;
-   cursor: pointer;
-   scale: 110%;
-   transition: .3s ease-in-out;
-}
-
-.cart_js {
-   float: right;
-   right: 70px;
-   top: 20px;
-   font-size: 25px;
-}
-
-.cart_js:hover {
-   color: red;
-   cursor: pointer;
-   transition: .3s ease-in-out;
-   scale: 120%;
-}
-
-div.category_list,
-div.cart_list_item {
-   border: 1px solid black;
-   position: absolute;
-   right: 0.1%;
-   margin-top: 11px;
-   background-color: rgba(248, 250, 250, 0.911);
-   min-width: 250px;
-   padding-left: 5px;
-   padding-top: 6px;
-   border-radius: 10px 0 0 10px;
-   z-index: 100;
-}
-
-div.category_list:last-child,
-div.cart_list_item:last-child {
-   padding-bottom: 8px;
-}
-
-
-div.category_list > ol > li,
-li.item_in_cart {
-   list-style: none;
-   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serifs;
-   border-top: 1px solid black;
-   padding-bottom: 3px;
-   cursor: pointer;
-}
-
-div.category_list > ol >li:first-child,
-li.item_in_cart:first-child {
-   border-top: none;
-}
-
-div.category_list > ol > li:hover,
-li.item_in_cart:hover {
-   scale: 102%;
-   transition: 10ms ease-in-out;
-} 
 
 /* Index section */
 
-section.index_page div{
-   position: relative;
-   max-width: 70%;
-   margin: 0 auto;
+div.index.carousel.carousel-dark {
+   margin-bottom: 3rem;
 }
-
-section.index_page div img.index_image{
-   margin-top: 40px;
-   margin-bottom: 60px;
-   width: 900px;
-   height: 450px;
-}
-
-section.index_page div h2{
-   position: absolute;
-   left: 20px;
-   top: 60px;
-}
-
-section.index_page div.categories {
-   max-width: 70%;
-   position: relative;
-   margin: 0 auto;
-   padding-bottom: 30px;
-}
-
-section.index_page div.categories div {
-   display: inline-block;
-   margin-right: 20px;
-   padding: 2px;
-   border-radius: 10px;
-   background-color: rgb(197, 193, 193);
-   cursor: pointer;
-}
-
-section.index_page div.categories div:hover {
-   scale: 105%;
-   transition: 10ms ease-in-out;
-}
-
 
 
 
 /* Main section */
 
-section.main_section {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   padding-top: 80px;
-   padding-bottom: 50px;
-   border: 2px solid green;
+div.card.border-dark{
+   margin-bottom: 2rem;
 }
 
-section div.item_card {
-   border: 1px solid #3C3D41;
-   height: 600px;
-   width: 450px;
-   margin-bottom: 1em;
+button.add-to-cart.btn.btn-outline-success {
+   margin-left: 2em;
 }
 
-section div.item_card:last-child {
-   margin-bottom: 70px;
-}
-
-section div.item_card img{
-   border: 1px solid orange;
-   min-width: 100%;
-   width: 100%;
-   min-height: 70%;
-   height: 70%;
-}
-
-/* about section */
-
-.about_section {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   padding-top: 80px;
-   padding-bottom: 50px;
-   border: 2px solid green;
-}
-
-section.about_section div.item_card {
-   border: 1px solid #3C3D41;
-   height: 600px;
-   width: 450px;
-   margin-bottom: 1em;
-}
-
-section.about_section div.item_card:last-child {
-   margin-bottom: 70px;
-}
-
-section.about_section div.item_card img{
-   border: 1px solid orange;
-   min-width: 100%;
-   width: 100%;
-   min-height: 70%;
-   height: 70%;
-}
-
-/* end section */
-
-/* Order */
-
-img.mob_order_image {
-   height: 65px;
-   width: auto;
+div.fade.alert.alert-info.show {
+   margin-top: 4rem;
 }
 
 /* Footer */
@@ -242,13 +67,14 @@ footer {
    bottom: 0;
    background: #3C3D41;
    color: white;
+   margin-top: 3rem;
  }
-.container {
+/* .container {
    margin: 0 auto;
    width: 100%;
    max-width: 960px;
    padding: 0 15px;
-}
+} */
 .footer-col {
     width: 33.3333333333%;
     float: left;

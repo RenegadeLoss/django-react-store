@@ -5,88 +5,36 @@ import Footer from "./components/Footer";
 import About from "./pages/About";
 import Index from "./pages/Index";
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import CartMobile from "./pages/CartMobile";
+import Cart from "./pages/Cart";
+
 
 class App extends React.Component {
   constructor(props){
     super(props)
-    this.state = JSON.parse(window.sessionStorage.getItem('state')) || {
-      items :
-      [
-        {
-        id: 1,
-        title: 'item_name',
-        type: 'item_type',
-        price: 100,
-      },
-      {
-        id: 2,
-        title: 'item_name_2',
-        type: 'item_type_2',
-        price: 101,
-      },
-      {
-        id: 3,
-        title: 'item_name_3',
-        type: 'item_type_3',
-        price: 102,
-      },
-      {
-        id: 4,
-        title: 'item_name_4',
-        type: 'item_type_4',
-        price: 103,
-      },
-      {
-        id: 5,
-        title: 'item_name_5',
-        type: 'item_type_5',
-        price: 104,
-      },
-      {
-        id: 6,
-        title: 'item_name_6',
-        type: 'item_type_6',
-        price: 105,
-      },
-      ],
-    }
-    this.state ={
-      currentItems: this.state.items,
-      order: [],
-      categories: [],
+    this.state = {
+      order: JSON.parse(localStorage.getItem('order')) || [],
       filter: 'all',
-      pages: {},
+      categories: [],
     }
     this.handleClick = this.handleClick.bind(this)
     this.removeFromCart = this.removeFromCart.bind(this)
     this.setFilter = this.setFilter.bind(this)
   }
 
+  setState(state){
+    if ('order' in state){
+      localStorage.setItem('order', JSON.stringify(state.order))}
+    super.setState(state)
+  }
   
 
   componentDidMount(){
-    if (this.state.filter) {
-    fetch(`http://127.0.0.1:8000/api/get_list/${this.state.filter}/1`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            items: result,
-            currentItems: result
-          });
-        },
-        (error) => {
-        }
-      )
-    }
-
     fetch("http://127.0.0.1:8000/api/get_categories/")
     .then(res => res.json())
     .then(
       (result) => {
         this.setState({
-          categories: result
+          categories: result.results
         });
       },
       // Note: it's important to handle errors here
@@ -104,6 +52,7 @@ class App extends React.Component {
       if(new_order[i].id === item.id){
         new_order[i].count += 1
         need_add = !need_add
+        break
       }
     }
     if(need_add) {
@@ -111,9 +60,8 @@ class App extends React.Component {
         order: [...this.state.order, {id: item.id, title: item.title, type: item.type, price: item.price, count: 1, image: item.image_1}]  
     })}
     else {this.setState({
-      order: new_order
+      order: new_order.slice()
     })}
-    window.sessionStorage.setItem('state', JSON.stringify(this.state))
   }
 
   removeFromCart(id){
@@ -122,6 +70,7 @@ class App extends React.Component {
       if(id === new_order[i].id){
         if(new_order[i].count > 1){
           new_order[i].count -= 1
+          break
         }
         else{
           new_order.splice(i,1)
@@ -130,31 +79,18 @@ class App extends React.Component {
       
     }
     this.setState({
-      order: new_order
+      order: new_order.slice()
     })
-    window.sessionStorage.setItem('state', JSON.stringify(this.state))
   }
 
   setFilter(category){
-    if (category != 'undefined'){
-    fetch(`http://127.0.0.1:8000/api/get_pages/${category.slug}`)
+    if (category !== 'undefined'){
+    fetch(`http://127.0.0.1:8000/api/get_list/${category.slug}?page=1`)
         .then(res => res.json())
         .then(
           (result) => {
             this.setState({
-              filter: category,
-              pages: result[-1]
-            });
-          },
-          (error) => {
-          }
-        )
-    fetch(`http://127.0.0.1:8000/api/get_list/${category.slug}/1`)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            this.setState({
-              currentItems: result,
+              currentItems: result.results,
             });
           },
           (error) => {
@@ -170,7 +106,7 @@ class App extends React.Component {
           <Route path="/" element={<Index categories={this.state.categories} setFilter={this.setFilter} filter={this.state.filter} />}/>
           <Route path="catalog/:filter/:page" element={<Main  handleClick={this.handleClick}/>}  />
           <Route path="catalog/about/:id" element={<About handleClick={this.handleClick}/>}/>
-          <Route path="order/" element={<CartMobile order={this.state.order} removeFromOrder={this.removeFromCart} addToOrder={this.handleClick}/>} />
+          <Route path="order/" element={<Cart order={this.state.order} removeFromOrder={this.removeFromCart} addToOrder={this.handleClick}/>} />
           <Route path="*" element={<Navigate to='catalog/' replace/>} />
          </Routes>
         <Footer />

@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-_ibyadw5dshmwlv&t&@i8km5fo0*kwc85)r1pbr_pb=v2rlz&)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.140']
 
 
 # Application definition
@@ -111,6 +111,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 8,
+}
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -134,7 +140,7 @@ STATICFILES_DIRS = []
 
 # If you want to serve user uploaded files add these settings
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'build', 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'src', 'media')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
