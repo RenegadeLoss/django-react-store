@@ -22,7 +22,7 @@ Django = ">=3.2"
 
 [[package]]
 name = "Django"
-version = "4.1.4"
+version = "4.0.8"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
@@ -200,7 +200,7 @@ brotli = ["Brotli"]
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.10"
+python-versions = "^3.7"
 content-hash = "a8d057f7e65ac9946effb7671fb9aae5951a33a70880d25b9b2bcfc001d67ad3"
 
 [metadata.files]
