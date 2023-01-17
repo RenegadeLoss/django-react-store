@@ -26,7 +26,7 @@ version = "4.1.4"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
-python-versions = ""
+python-versions = ">=3.7"
 
 [package.dependencies]
 asgiref = ">=3.5.2,<4"
