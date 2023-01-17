@@ -46,11 +46,11 @@ function Main(props) {
           {items.item.map( item => (
             <Col key={item.id} xs md lg="3" className="d-flex justify-content-center">
               <Card border="dark" style={{ width: '18rem' }}>
-                <Card.Img variant='bottom' src={item.image_1} />
+                <Card.Img className="rounded" variant='bottom' src={item.image_1} />
                 <Card.Body>
                   <Card.Title>{item.title}</Card.Title>
                   <Link to={`/catalog/about/${item.id}`}><Button variant='outline-dark' className='about'> Подробнее </Button></Link>
-                  <Button variant='outline-success' onClick={() => props.handleClick(item.product)} className='add-to-cart'>В корзину</Button>
+                  <Button variant='outline-success' onClick={() => props.handleClick(item)} className='add-to-cart'>В корзину</Button>
                   <Card.Text>Цена: {item.price}</Card.Text>
                 </Card.Body>
               </Card>

@@ -5,7 +5,7 @@ from .models import Clothings, TypeOfClothes, Image
 
 @admin.register(TypeOfClothes)
 class TypeOfClothesAdmin(admin.ModelAdmin):
-    list_display = ('id', 'type_name', 'slug',)
+    list_display = ('type_name', 'id', 'slug',)
 
 
 @admin.register(Clothings)

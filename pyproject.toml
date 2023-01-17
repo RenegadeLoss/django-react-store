@@ -18,6 +18,7 @@ psycopg2-binary = "^2.9.5"
 transliterate = "^1.10.2"
 Pillow = "^9.3.0"
 django-autoslug = "^1.9.8"
+python-dotenv = "^0.21.0"
 
 
 [build-system]

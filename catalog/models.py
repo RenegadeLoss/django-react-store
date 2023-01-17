@@ -12,7 +12,7 @@ from django.template.defaultfilters import slugify as d_slugify
 class TypeOfClothes(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     type_name = models.CharField(max_length=100, help_text='Тип одежды(Футболки, Шорты, Худи и т.д.)', unique=True)
-    slug = AutoSlugField(populate_from='type_name', slugify=slugify, editable=False) # костыль, потому что AutoSlugField не работает с кириллицей
+    slug = AutoSlugField(populate_from='type_name', slugify=d_slugify, editable=True) # костыль, потому что AutoSlugField не работает с кириллицей
 
     class Meta:
         verbose_name = 'Категория'

@@ -50,7 +50,7 @@ function About(props) {
             <Card.Body>
               <Card.Title>{item.product.title}</Card.Title>
               <Card.Text>{item.product.description}</Card.Text>
-              <Button variant='outline-dark' onClick={() => props.handleClick(item.product)}> В корзину </Button>
+              <Button variant='outline-success' onClick={() => props.handleClick(item.product)}> В корзину </Button>
             </Card.Body>
           </Card>
         </Col>

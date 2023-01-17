@@ -18,7 +18,7 @@ export class Index extends Component {
         </Carousel>
         <Row xs={2} md={6} lg xl className="justify-content-center">
           {this.props.categories.map(el => (
-            <Col>
+            <Col className="d-flex justify-content-center">
               <Link to={`catalog/${el.slug}/1`} key={el.id} className='noneStyle' >
                 <Button variant='secondary' onClick={() => this.props.setFilter(el) }> {el.type_name}</Button>
               </Link>
