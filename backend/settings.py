@@ -86,11 +86,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'djangoreact',
-        'USER': 'renegade',
-        'PASSWORD': '1209784',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': os.environ['NAME_DB'],
+        'USER': os.environ['USER_DB'],
+        'PASSWORD': os.environ['PASS_DB'],
+        'HOST': os.environ['HOST_DB'],
+        'PORT': os.environ['PORT_DB'],
     }
 }
 
