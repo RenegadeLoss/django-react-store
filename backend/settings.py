@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import django_heroku
 from dotenv import load_dotenv, find_dotenv
+import dj_database_url
 
 load_dotenv(find_dotenv())
 
@@ -28,9 +29,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['192.168.0.140']
+ALLOWED_HOSTS = []
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
 
 # Application definition
@@ -84,14 +87,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['NAME_DB'],
-        'USER': os.environ['USER_DB'],
-        'PASSWORD': os.environ['PASS_DB'],
-        'HOST': os.environ['HOST_DB'],
-        'PORT': os.environ['PORT_DB'],
-    }
+    'default': dj_database_url.config(default='postgresql://postgres:postgres@localhost:5432/drcatalog', conn_max_age=600)
 }
 
 
