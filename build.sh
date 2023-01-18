@@ -1,6 +1,6 @@
 set -o errexit
 
-sudo apt-get install python3-setuptools
+apt-get install python3-setuptools
 
 poetry install
 
