@@ -20,6 +20,7 @@ django-autoslug = "^1.9.8"
 python-dotenv = "^0.21.0"
 dj-database-url = "^1.2.0"
 Django = "^3.2.16"
+setuptools = "^66.0.0"
 
 
 [build-system]
