@@ -90,18 +90,6 @@ setproctitle = ["setproctitle"]
 tornado = ["tornado (>=0.2)"]
 
 [[package]]
-name = "pillow"
-version = "9.4.0"
-description = "Python Imaging Library (Fork)"
-category = "main"
-optional = false
-python-versions = ">=3.7"
-
-[package.extras]
-docs = ["furo", "olefile", "sphinx (>=2.4)", "sphinx-copybutton", "sphinx-inline-tabs", "sphinx-issues (>=3.0.1)", "sphinx-removed-in", "sphinxext-opengraph"]
-tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
-
-[[package]]
 name = "psycopg2"
 version = "2.9.5"
 description = "psycopg2 - Python-PostgreSQL Database Adapter"
@@ -177,7 +165,7 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "6551c7610530dc98552f4211263ed18161306759c5a49ecbac56e01a189258fa"
+content-hash = "2d794407c7fdbd2506143cfb1eb6a878af81bd09a2aeda0ea7fe362edd616bc3"
 
 [metadata.files]
 asgiref = []
@@ -187,7 +175,6 @@ django-autoslug = []
 django-heroku = []
 djangorestframework = []
 gunicorn = []
-pillow = []
 psycopg2 = []
 psycopg2-binary = []
 python-dotenv = []
