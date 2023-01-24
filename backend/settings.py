@@ -16,22 +16,21 @@ import django_heroku
 from dotenv import load_dotenv, find_dotenv
 import dj_database_url
 
-load_dotenv(find_dotenv())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+load_dotenv(BASE_DIR / '.env')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.getenv['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
@@ -87,7 +86,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://renegade:MJ0Ys6KepwE0hNLkmv0ZKmcOt5GiIUIZ@dpg-cf3c4garrk0bppdk8sjg-a/drcatalog', conn_max_age=600)
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600)
 }
 
 
