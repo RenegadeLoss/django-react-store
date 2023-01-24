@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Stepanchenko Andrey <renegadeloss696@gmail.com>"]
 readme = "README.md"
-packages = [{include = "django_react_store"}]
+
 
 [tool.poetry.dependencies]
 python = "^3.10"
