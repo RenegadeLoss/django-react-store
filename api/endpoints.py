@@ -29,12 +29,12 @@ class PageItem(generics.ListAPIView):
         return list(Clothings.objects.all())
 
 
-class CategoriesPagination(PageNumberPagination):
-    page_size = TypeOfClothes.objects.all().count()
+# class CategoriesPagination(PageNumberPagination):
+#     page_size = TypeOfClothes.objects.all().count()
 
 
 class GetCategories(generics.ListAPIView):
     serializer_class = TypeOfClothesSerializer
     queryset = TypeOfClothes.objects.all()
-    pagination_class = CategoriesPagination
+    pagination_class = None
 
